@@ -684,7 +684,7 @@
 
 .img-wrapper {
   position: relative;
-  padding-bottom: 133.33%;    /* 4:3 aspect ratio */
+  padding: 50%;/* 4:3 aspect ratio */
   overflow: hidden;
   width: 100%;
 }
@@ -692,7 +692,6 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
   margin: auto;
 }
 
