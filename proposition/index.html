@@ -2,14 +2,30 @@
 <html>
 <head>
     <title>Proposition</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        function checkDeviceType() {
+            var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            var iframe = document.getElementById('pdfFrame');
+            
+            if (isMobile) {
+                // Mobile device detected
+                var link = document.createElement('a');
+                link.href = './Moot proposition .pdf';
+                link.download = 'MootProposition.pdf';
+                link.click();
+            } else {
+                // Desktop device detected
+                iframe.src = './Moot proposition .pdf';
+            }
+        }
+    </script>
 </head>
 
-<body style="height: 100vh; width: 100vw;margin: 0;
-padding: 0;">
-
-<iframe src="./Moot proposition .pdf" width="100%" height="100%" style="padding:0"></iframe>
-
-
+<body style="height: 100vh; width: 100vw; margin: 0; padding: 0;">
+    <iframe id="pdfFrame" width="100%" height="100%" style="padding: 0"></iframe>
+    <script>
+        checkDeviceType();
+    </script>
 </body>
-
 </html>
