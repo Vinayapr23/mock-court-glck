@@ -15,12 +15,14 @@
                 link.download = 'MootProposition.pdf';
                 link.click();
 
-                // Display popup message
-                alert('PDF file has been downloaded.');
-
-                // Redirect to a specific location after a 2-second delay
+                // Display popup message after a 2-second delay
                 setTimeout(function() {
-                    window.location.href = '../';
+                    alert('PDF file has been downloaded.');
+                    
+                    // Redirect to a specific location after another 2-second delay
+                    setTimeout(function() {
+                        window.location.href = '../';
+                    }, 2000);
                 }, 2000);
             } else {
                 // Desktop device detected
