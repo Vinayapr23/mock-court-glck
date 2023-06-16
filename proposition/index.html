@@ -9,7 +9,11 @@
 
             if (isMobile) {
                 // Mobile device detected
-                window.location.href = 'https://drive.google.com/file/d/17CVg3z-noAJYZs_sRBRp0a83FINv54Nd/view?usp=drive_link';
+                alert('Opening document in Google Drive');
+                setTimeout(function() {
+                    window.location.href = 'https://drive.google.com/file/d/17CVg3z-noAJYZs_sRBRp0a83FINv54Nd/view?usp=drive_link';
+                }, 2000);
+              
             } else {
                 // Desktop device detected
                 window.location.href = './Moot proposition .pdf';
