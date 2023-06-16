@@ -6,34 +6,42 @@
     <script>
         function checkDeviceType() {
             var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            var iframe = document.getElementById('pdfFrame');
 
             if (isMobile) {
                 // Mobile device detected
                 var link = document.createElement('a');
                 link.href = './Moot proposition .pdf';
                 link.download = 'MootProposition.pdf';
-                link.click();
+                link.textContent = 'Download PDF';
 
-                // Display popup message after a 2-second delay
+                // Add "View in Google Drive" link
+                var driveLink = document.createElement('a');
+                driveLink.href = 'https://drive.google.com/viewerng/viewer?url=' + encodeURIComponent(link.href);
+                driveLink.target = '_blank';
+                driveLink.textContent = 'View in Google Drive';
+
+                // Create a paragraph element for the links
+                var paragraph = document.createElement('p');
+                paragraph.appendChild(link);
+                paragraph.appendChild(document.createTextNode(' | '));
+                paragraph.appendChild(driveLink);
+
+                // Display the links
+                document.body.appendChild(paragraph);
+
+                // Redirect to a specific location after a 2-second delay
                 setTimeout(function() {
-                    alert('PDF file has been downloaded.');
-                    
-                    // Redirect to a specific location after another 2-second delay
-                    setTimeout(function() {
-                        window.location.href = '../';
-                    }, 2000);
+                    window.location.href = '../';
                 }, 2000);
             } else {
                 // Desktop device detected
-                iframe.src = './Moot proposition .pdf';
+                window.location.href = './Moot proposition .pdf';
             }
         }
     </script>
 </head>
 
 <body style="height: 100vh; width: 100vw; margin: 0; padding: 0;">
-    <iframe id="pdfFrame" width="100%" height="100%" style="padding: 0"></iframe>
     <script>
         checkDeviceType();
     </script>
