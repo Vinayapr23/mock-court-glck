@@ -6,27 +6,40 @@
     <script>
         function checkDeviceType() {
             var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            var iframe = document.getElementById('pdfFrame');
 
             if (isMobile) {
                 // Mobile device detected
-               
-                setTimeout(function() {
+                var confirmed = confirm('Are you sure you want to proceed with the download?');
+
+                if (confirmed) {
+                    var link = document.createElement('a');
+                    link.href = './Moot proposition .pdf';
+                    link.download = 'MootProposition.pdf';
+                    link.click();
+
+                    // Display popup message after a 2-second delay
                     setTimeout(function() {
-                        
-                        window.location.href = 'https://drive.google.com/file/d/17CVg3z-noAJYZs_sRBRp0a83FINv54Nd/view?usp=drive_link';
-                }, 2000);
-                alert('Opening document in Google Drive');
-                }, 500);
-              
+                        alert('PDF file has been downloaded.');
+
+                        // Redirect to a specific location after another 2-second delay
+                        setTimeout(function() {
+                            window.location.href = '../';
+                        }, 2000);
+                    }, 2000);
+                } else {
+                    window.location.href = '../';
+                }
             } else {
                 // Desktop device detected
-                window.location.href = './Moot proposition .pdf';
+                iframe.src = './Moot proposition .pdf';
             }
         }
     </script>
 </head>
 
 <body style="height: 100vh; width: 100vw; margin: 0; padding: 0;">
+    <iframe id="pdfFrame" width="100%" height="100%" style="padding: 0"></iframe>
     <script>
         checkDeviceType();
     </script>
