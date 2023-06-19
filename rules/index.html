@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Proposition</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        function checkDeviceType() {
+            var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            var iframe = document.getElementById('pdfFrame');
+
+            if (isMobile) {
+                // Mobile device detected
+                var confirmed = confirm('Click ok to continue downloading the document!');
+
+                if (confirmed) {
+                    var link = document.createElement('a');
+                    link.href = './Rules and Regulations.pdf';
+                    link.download = 'Rules and Regulations.pdf';
+                    link.click();
+
+                    // Display popup message after a 2-second delay
+                    setTimeout(function() {
+                        alert('PDF file has been downloaded.');
+
+                        // Redirect to a specific location after another 2-second delay
+                        setTimeout(function() {
+                            window.location.href = '../';
+                        }, 2000);
+                    }, 2000);
+                } else {
+                    window.location.href = '../';
+                }
+            } else {
+                // Desktop device detected
+                iframe.src = './Rules and Regulations.pdf';
+            }
+        }
+    </script>
+</head>
+
+<body style="height: 100vh; width: 100vw; margin: 0; padding: 0;">
+    <iframe id="pdfFrame" width="100%" height="100%" style="padding: 0"></iframe>
+    <script>
+        checkDeviceType();
+    </script>
+</body>
+</html>
